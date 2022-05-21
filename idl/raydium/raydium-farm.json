@@ -1,0 +1,402 @@
+{
+  "version": "0.1.0",
+  "name": "raydium_farm",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "stakePool",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "lpVault",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rewardVaultA",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "nonce",
+          "type": "u64"
+        },
+        {
+          "name": "rewardPerSlotA",
+          "type": "u64"
+        },
+        {
+          "name": "rewardPerSlotB",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "deposit",
+      "accounts": [
+        {
+          "name": "stakePool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "stakerInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakerOwner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "srcLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destRewardTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultRewardTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "arg",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdraw",
+      "accounts": [
+        {
+          "name": "stakePool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "stakerInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakerOwner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "destLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destRewardTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultRewardTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "arg",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "updatePool",
+      "accounts": [
+        {
+          "name": "stakePool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "emergencyWithdraw",
+      "accounts": [
+        {
+          "name": "stakePool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "stakerInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakerOwner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "destLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "createAssociatedAccount",
+      "accounts": [
+        {
+          "name": "stakePool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedUserStakeInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "depositV2",
+      "accounts": [
+        {
+          "name": "stakePool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "stakerInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakerOwner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "srcLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destRewardTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultRewardTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "destRewardTokenB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultRewardTokenB",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "arg",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdrawV2",
+      "accounts": [
+        {
+          "name": "stakePool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "stakerInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakerOwner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "destLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destRewardTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultRewardTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "arg",
+          "type": "u64"
+        }
+      ]
+    }
+  ]
+}

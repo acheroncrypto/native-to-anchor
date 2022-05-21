@@ -1,0 +1,577 @@
+{
+  "version": "0.1.0",
+  "name": "raydium_stable",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "amm",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammOpenOrders",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammCoinMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammPcMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammCoinVault",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammPcVault",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammTargetOrders",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "modelDataAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "serumProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "serumMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userDestLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userWallet",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "nonce",
+          "type": "u8"
+        },
+        {
+          "name": "openTime",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "deposit",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "amm",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammOpenOrders",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammTargetOrders",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammCoinVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammPcVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "modelDataAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "serumMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userSourceCoinToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userSourcePcToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userDestLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userOwner",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "maxCoinAmount",
+          "type": "u64"
+        },
+        {
+          "name": "maxPcAmount",
+          "type": "u64"
+        },
+        {
+          "name": "baseSide",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdraw",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "amm",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammOpenOrders",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammTargetOrders",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammCoinVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammPcVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "modelDataAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "serumProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "serumMarket",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumCoinVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumPcVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumVaultSigner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userSourceLpToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userDestCoinToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userDestPcToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userOwner",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "swapBaseIn",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "amm",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammOpenOrders",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammCoinVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammPcVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "modelDataAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "serumProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "serumMarket",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumBids",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumAsks",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumEventQueue",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumCoinVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumPcVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumVaultSigner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userSourceToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userDestinationToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userSourceOwner",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "amountIn",
+          "type": "u64"
+        },
+        {
+          "name": "minimumAmountOut",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "preInitialize",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammTargetOrders",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammCoinMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammPcMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammCoinVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammPcVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userWallet",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "nonce",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "swapBaseOut",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "amm",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ammOpenOrders",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammCoinVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ammPcVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "modelDataAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "serumProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "serumMarket",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumBids",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumAsks",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumEventQueue",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumCoinVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumPcVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "serumVaultSigner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userSourceToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userDestinationToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userSourceOwner",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "maxAmountIn",
+          "type": "u64"
+        },
+        {
+          "name": "amountOut",
+          "type": "u64"
+        }
+      ]
+    }
+  ]
+}

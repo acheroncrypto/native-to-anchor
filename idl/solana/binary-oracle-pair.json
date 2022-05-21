@@ -1,0 +1,232 @@
+{
+  "version": "0.1.0",
+  "name": "binary_oracle_pair",
+  "instructions": [
+    {
+      "name": "initPool",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "decider",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "depositTokenMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "depositAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenPassMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenFailMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "mintEndSlot",
+          "type": {
+            "defined": "Slot"
+          }
+        },
+        {
+          "name": "decideEndSlot",
+          "type": {
+            "defined": "Slot"
+          }
+        },
+        {
+          "name": "bumpSeed",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "deposit",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userTransferAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "userTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolDepositTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenPassMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenFailMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenPassDestinationAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenFailDestinationAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "arg",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdraw",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userTransferAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "poolDepositTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenPassUserAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenFailUserAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenPassMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenFailMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userTokenDestinationAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "arg",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "decide",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "decider",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "arg",
+          "type": "bool"
+        }
+      ]
+    }
+  ]
+}

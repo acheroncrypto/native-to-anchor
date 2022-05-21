@@ -1,0 +1,11 @@
+[package]
+name = "native-to-anchor"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anchor-syn = { version = "0.24.2", features = ["idl"] }
+colored = "2.0.0"
+serde_json = "1.0.81"

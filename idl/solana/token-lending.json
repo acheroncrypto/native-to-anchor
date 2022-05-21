@@ -1,0 +1,715 @@
+{
+  "version": "0.1.0",
+  "name": "token_lending",
+  "instructions": [
+    {
+      "name": "initLendingMarket",
+      "accounts": [
+        {
+          "name": "lendingMarket",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "oracleProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "owner",
+          "type": "publicKey"
+        },
+        {
+          "name": "quoteCurrency",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "setLendingMarketOwner",
+      "accounts": [
+        {
+          "name": "lendingMarket",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarketOwner",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "newOwner",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "initReserve",
+      "accounts": [
+        {
+          "name": "sourceLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destinationCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserveLiquidityMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "reserveLiquiditySupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserveLiquidityFeeReceiver",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserveCollateralMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserveCollateralSupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pythProduct",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "pythPrice",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarketAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarketOwner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "userTransferAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "liquidityAmount",
+          "type": "u64"
+        },
+        {
+          "name": "config",
+          "type": {
+            "defined": "ReserveConfig"
+          }
+        }
+      ]
+    },
+    {
+      "name": "refreshReserve",
+      "accounts": [
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserveLiquidityOracle",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "depositReserveLiquidity",
+      "accounts": [
+        {
+          "name": "sourceLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destinationCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserveLiquiditySupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserveCollateralMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarketAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userTransferAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "liquidityAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "redeemReserveCollateral",
+      "accounts": [
+        {
+          "name": "sourceCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destinationLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserveCollateralMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserveLiquiditySupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarketAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userTransferAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "collateralAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "initObligation",
+      "accounts": [
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "obligationOwner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "refreshObligation",
+      "accounts": [
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "depositObligationCollateral",
+      "accounts": [
+        {
+          "name": "sourceCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destinationCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "depositReserve",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "obligationOwner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "userTransferAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "collateralAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdrawObligationCollateral",
+      "accounts": [
+        {
+          "name": "sourceCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destinationCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "withdrawReserve",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarketAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "obligationOwner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "collateralAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "borrowObligationLiquidity",
+      "accounts": [
+        {
+          "name": "sourceLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destinationLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "borrowReserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "borrowReserveLiquidityFeeReceiver",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarketAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "obligationOwner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "liquidityAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "repayObligationLiquidity",
+      "accounts": [
+        {
+          "name": "sourceLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destinationLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "repayReserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userTransferAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "liquidityAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "liquidateObligation",
+      "accounts": [
+        {
+          "name": "sourceLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destinationCollateral",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "repayReserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "repayReserveLiquiditySupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "withdrawReserve",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "withdrawReserveCollateralSupply",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "obligation",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarketAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "userTransferAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "liquidityAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "flashLoan",
+      "accounts": [
+        {
+          "name": "sourceLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "destinationLiquidity",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserve",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "reserveLiquidityFeeReceiver",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "hostFeeReceiver",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarket",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "lendingMarketAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "flashLoanReceiverProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ]
+}
