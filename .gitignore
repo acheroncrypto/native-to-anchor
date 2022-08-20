@@ -1,1 +1,8 @@
-/target
+target
+node_modules
+dist
+*/native*
+*/**/generated*
+**/*-2022*
+.*
+test-keypair.json

@@ -1,0 +1,29 @@
+[package]
+name = "native-to-anchor"
+description = "Generate Anchor IDLs and clients from native Solana programs"
+version = "0.1.0"
+authors = ["acheron <acheroncrypto@gmail.com>"]
+repository = "https://github.com/acheroncrypto/native-to-anchor"
+documentation = "https://github.com/acheroncrypto/native-to-anchor/blob/master/README.md"
+license = "MIT"
+edition = "2021"
+include = [
+    "src/**/*.rs",
+    "Cargo.toml",
+    "Cargo.lock"
+]
+keywords = ["native-to-anchor", "solana", "anchor", "anchor-client", "nta"]
+
+[dependencies]
+anchor-syn = { version = "0.25.0", features = ["idl"] }
+clap = { version = "3.2.16", features = ["derive"] }
+colored = "2.0.0"
+log = "0.4.17"
+serde = "1.0.137"
+serde_derive = "1.0.137"
+serde_json = "1.0.81"
+toml = "0.5.9"
+
+[[bin]]
+name = "native-to-anchor"
+path = "src/main.rs"

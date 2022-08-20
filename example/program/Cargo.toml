@@ -1,0 +1,19 @@
+[package]
+name = "nta-example"
+version = "0.1.0"
+description = "A simple program to show how Native to Anchor works"
+authors = ["acheron <acheroncrypto@gmail.com>"]
+repository = "https://github.com/acheroncrypto/native-to-anchor"
+license = "MIT"
+edition = "2018"
+
+[features]
+no-entrypoint = []
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+solana-program = "1.10.35"
+borsh = "*"
+thiserror = "*"
