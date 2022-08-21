@@ -453,22 +453,24 @@ export async function stakePoolTests() {
   }
 
   async function setFee() {
-    // TODO: tuple enum arg
-    // await program.methods
-    //   .setFee(0)
-    //   .accounts({
-    //     stakePool: stakePoolPk,
-    //     manager: kp.publicKey,
-    //   })
-    //   .rpc();
+    await program.methods
+      .setFee({ solReferral: 5 })
+      .accounts({
+        stakePool: stakePoolPk,
+        manager: kp.publicKey,
+      })
+      .rpc();
   }
 
   async function setStaker() {
-    await program.methods.setStaker().accounts({
-      stakePool: stakePoolPk,
-      setStakerAuthority: kp.publicKey,
-      newStaker: kp.publicKey,
-    });
+    await program.methods
+      .setStaker()
+      .accounts({
+        stakePool: stakePoolPk,
+        setStakerAuthority: kp.publicKey,
+        newStaker: kp.publicKey,
+      })
+      .rpc();
   }
 
   async function depositSol() {
@@ -490,10 +492,13 @@ export async function stakePoolTests() {
   }
 
   async function setFundingAuthority() {
-    await program.methods.setFundingAuthority(0).accounts({
-      stakePool: stakePoolPk,
-      manager: kp.publicKey,
-    });
+    await program.methods
+      .setFundingAuthority({ stakeDeposit: {} })
+      .accounts({
+        stakePool: stakePoolPk,
+        manager: kp.publicKey,
+      })
+      .rpc();
   }
 
   async function withdrawSol() {
@@ -516,38 +521,38 @@ export async function stakePoolTests() {
       .rpc();
   }
 
-  async function createTokenMetadata() {
-    // TODO: this should work but it's not tested
-    // await program.methods.createTokenMetadata(
-    //   "acheron",
-    //   "ACH",
-    //   "https://github.com/acheroncrypto"
-    // ).accounts({
-    //   stakePool: stakePoolPk,
-    //   manager: kp.publicKey,
-    //   poolMint: poolMintPk,
-    //   payer: kp.publicKey,
-    //   tokenMetadata: ,
-    //   mplTokenMetadata: ,
-    //   systemProgram: SystemProgram.programId,
-    //   rent: SYSVAR_RENT_PUBKEY
-    // }).rpc();
-  }
+  // TODO: this should work but it's not tested
+  // async function createTokenMetadata() {
+  // await program.methods.createTokenMetadata(
+  //   "acheron",
+  //   "ACH",
+  //   "https://github.com/acheroncrypto"
+  // ).accounts({
+  //   stakePool: stakePoolPk,
+  //   manager: kp.publicKey,
+  //   poolMint: poolMintPk,
+  //   payer: kp.publicKey,
+  //   tokenMetadata: ,
+  //   mplTokenMetadata: ,
+  //   systemProgram: SystemProgram.programId,
+  //   rent: SYSVAR_RENT_PUBKEY
+  // }).rpc();
+  // }
 
-  async function updateTokenMetadata() {
-    // TODO: this should work but it's not tested
-    // await program.methods.updateTokenMetadata(
-    //   "acheron",
-    //   "ACH",
-    //   "https://twitter.com/acheroncrypto"
-    // ).accounts({
-    //   stakePool: stakePoolPk,
-    //   manager: kp.publicKey,
-    //   stakePoolWithdrawAuthority: withdrawAuthorityPk,
-    //   tokenMetadata: ,
-    //   mplTokenMetadata: ,
-    // }).rpc();
-  }
+  // TODO: this should work but it's not tested
+  // async function updateTokenMetadata() {
+  // await program.methods.updateTokenMetadata(
+  //   "acheron",
+  //   "ACH",
+  //   "https://twitter.com/acheroncrypto"
+  // ).accounts({
+  //   stakePool: stakePoolPk,
+  //   manager: kp.publicKey,
+  //   stakePoolWithdrawAuthority: withdrawAuthorityPk,
+  //   tokenMetadata: ,
+  //   mplTokenMetadata: ,
+  // }).rpc();
+  // }
 
   async function fetchStakePool() {
     const stakePool = await program.account.stakePool.fetch(stakePoolPk);
@@ -580,8 +585,8 @@ export async function stakePoolTests() {
   await test(depositSol);
   await test(setFundingAuthority);
   await test(withdrawSol);
-  await test(createTokenMetadata);
-  await test(updateTokenMetadata);
+  // await test(createTokenMetadata);
+  // await test(updateTokenMetadata);
   await test(fetchStakePool);
   await test(fetchValidatorList);
 }

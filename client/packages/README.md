@@ -19,4 +19,4 @@ await program.methods
   .rpc();
 ```
 
-You can see many more examples in the [tests](https://github.com/acheroncrypto/native-to-anchor/tree/master/tests) directory.
+You can see more examples in the [tests](https://github.com/acheroncrypto/native-to-anchor/tree/master/client/tests) directory.

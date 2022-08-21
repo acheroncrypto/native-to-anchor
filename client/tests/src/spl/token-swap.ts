@@ -436,7 +436,7 @@ export async function tokenSwapTests() {
     const poolTokenA = tradingTokensToPoolTokens(
       depositAmount,
       swapTokenAAmount.toNumber(),
-      poolMintSupply
+      poolMintSupply.toNumber()
     );
     const userAccountAPk = await createTokenAccount(mintAPk);
     const mintAIx = await tokenProgram.methods
@@ -482,7 +482,7 @@ export async function tokenSwapTests() {
     const poolTokenB = tradingTokensToPoolTokens(
       depositAmount,
       swapTokenBAmount.toNumber(),
-      poolMintSupply
+      poolMintSupply.toNumber()
     );
     const userAccountBPk = await createTokenAccount(mintBPk);
     const mintBIx = await tokenProgram.methods
@@ -545,7 +545,7 @@ export async function tokenSwapTests() {
     const poolTokenA = tradingTokensToPoolTokens(
       withdrawAmount,
       swapTokenAAmount.toNumber(),
-      poolMintSupply
+      poolMintSupply.toNumber()
     );
     const maximumPoolTokenAmountA =
       poolTokenA *
@@ -558,7 +558,7 @@ export async function tokenSwapTests() {
     const poolTokenB = tradingTokensToPoolTokens(
       withdrawAmount,
       swapTokenBAmount.toNumber(),
-      poolMintSupply
+      poolMintSupply.toNumber()
     );
     const maximumPoolTokenAmountB =
       poolTokenB *

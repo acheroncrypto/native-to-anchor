@@ -114,7 +114,7 @@ export async function getProvider() {
   if (!hasBalance && !(await provider.connection.getBalance(kp.publicKey))) {
     const txHash = await provider.connection.requestAirdrop(
       kp.publicKey,
-      2 * LAMPORTS_PER_SOL
+      1000 * LAMPORTS_PER_SOL
     );
     await confirmTx(txHash);
     hasBalance = true;

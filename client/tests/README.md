@@ -2,15 +2,18 @@
 
 - **IMPORTANT:** Make sure all programs that are in tests are deployed in your local validator and they are up-to date.
 - Make sure to update program ids in `src/constants.ts` if needed.
-- Install dependencies with:
+
+Initialize packages with:
 
 ```sh
-yarn
+# in client directory
+sh build-packages.sh
 ```
 
-**Run:**
+Run:
 
 ```sh
+# in client/tests
 yarn test
 ```
 
